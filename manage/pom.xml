@@ -43,7 +43,7 @@
                     <stopKey>foo</stopKey>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/${name}</contextPath>
+                        <contextPath>/${project.name}</contextPath>
                     </webApp>
                 </configuration>
             </plugin>
