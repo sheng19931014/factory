@@ -8,6 +8,10 @@
                 http://www.springframework.org/schema/tx
                 http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
+    <context:component-scan base-package="com.factory.dao">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
     <!-- 加载配置JDBC文件 -->
     <context:property-placeholder location="classpath:properties/jdbc.properties" />
     <!-- 数据源 -->
@@ -63,13 +67,12 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:mybatis-spring.xml"
-          p:mapperLocations="classpath:mapper/*Mapper.xml"
-          p:typeAliasesPackage="tk.mybatis.simple.model"
-    />
+          p:mapperLocations="classpath:mapper/*Mapper.xml"/>
+
     <!--扫描mapper接口所在包-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-          p:processPropertyPlaceHolders="true"
-          p:basePackage="com.factory.dao.inter"/>
+          p:basePackage="com.factory.dao.inter"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
     <!--事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

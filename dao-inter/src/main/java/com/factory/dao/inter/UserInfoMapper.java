@@ -3,8 +3,11 @@ package com.factory.dao.inter;
 import com.factory.dao.inter.pojo.UserInfo;
 import com.factory.dao.inter.pojo.UserInfoExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserInfoMapper {
     int countByExample(UserInfoExample example);
 
